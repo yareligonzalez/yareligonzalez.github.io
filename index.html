@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yareli Gonzalez</title>
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/7c2f268794.js" crossorigin="anonymous"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .header-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: #f5f5f5;
+            margin: 0 auto 2rem;
+            border: 3px solid #000000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-image::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 60%;
+            background-image:
+                radial-gradient(circle at 25% 25%, #f0f0f0 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, #f0f0f0 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1rem;
+            font-weight: 300;
+            color: #666666;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666666;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-link:hover {
+            color: #000000;
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            color: #000000;
+            font-weight: 500;
+        }
+
+        .nav-link i {
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .section {
+            display: none;
+            margin-bottom: 3rem;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 1px;
+            background: #000000;
+        }
+
+        .section p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .profile-photo-about {
+            width: 20%;
+            height: auto;
+            border-radius: 50%;
+            background: #f5f5f5;
+            float: left;
+            margin: 0 2rem 1rem 0;
+        }
+
+        .experience-item {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .experience-title {
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .experience-meta {
+            color: #666666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .publication {
+            background: #fafafa;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            border: 1px solid #f0f0f0;
+        }
+
+        .publication::before {
+            content: '📄';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1rem;
+            opacity: 0.3;
+        }
+
+        .publication-title {
+            font-weight: 500;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .publication-details {
+            font-size: 0.9rem;
+            color: #666666;
+            margin-bottom: 1rem;
+        }
+
+        .publication-link {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #000000;
+        }
+
+        .publication-link:hover {
+            opacity: 0.7;
+        }
+
+        .intro-text {
+            font-style: italic;
+            color: #666666;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-section {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            border-top: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        .contact-section::before {
+            content: '✦';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0 1rem;
+            font-size: 1rem;
+            color: #666666;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: #666666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+        }
+
+        .contact-link:hover {
+            color: #000000;
+            background: #f5f5f5;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            .header-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .nav {
+                gap: 2rem;
+            }
+
+            .nav-link {
+                font-size: 0.85rem;
+            }
+
+            .nav-link i {
+                font-size: 1.3rem;
+            }
+
+            .profile-photo-about {
+                float: none;
+                display: block;
+                margin: 0 auto 1.5rem;
+                width: 100px;
+                height: 100px;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="/images/header.png" alt="Header image" class="header-image">
+            <h1>Yareli Gonzalez</h1>
+            <div class="subtitle">Metallurgical and Materials Engineering Student</div>
+        </header>
+
+        <nav class="nav">
+            <a href="#" class="nav-link" onclick="showSection('about')">
+                <i class="fas fa-atom"></i>
+                About
+            </a>
+            <a href="#" class="nav-link" onclick="showSection('experience')">
+                <i class="fas fa-microscope"></i>
+                Experience
+            </a>
+            <a href="#" class="nav-link" onclick="showSection('research')">
+                <i class="fas fa-flask"></i>
+                Research
+            </a>
+            <a href="#" class="nav-link" onclick="showSection('making')">
+                <i class="fas fa-cut"></i>
+                Making
+            </a>
+        </nav>
+
+        <section id="about" class="section">
+            <h2>About</h2>
+            <img src="/images/profile-photo.jpg" alt="Yareli Gonzalez" class="profile-photo-about">
+            <p>I am currently a <b>Metallurgical and Materials Engineering student</b> at the <b>University of Texas at
+                    El Paso</b>, expecting to graduate in May 2027.
+            </p>
+
+            <p>Most recently, I completed an 8-month co-op as a <b>quality metallurgist at Nucor</b>, where I performed failure
+                analysis and root cause investigations, used advanced microscopy techniques to understand defect
+                formation, and worked cross-functionally to implement quality improvements that prevented customer
+                claims.</p>
+
+            <p>In my past lives, I have conducted research in high school for <b>magnetically actuated millirobot
+                    development at SMU (2019)</b>, worked as a <b>legislative intern at the National Mining Association
+                    (2024)</b> analyzing how environmental regulations affect critical minerals supply chains, as well
+                as spent over a year as a <b>research assistant developing self-healing polymer blends at UTEP's Polymer
+                    Extrusion Lab (2023-2024)</b> for NSF-funded additive manufacturing research.</p>
+        </section>
+
+        <section id="experience" class="section">
+            <h2>Experience</h2>
+
+            <div class="experience-item">
+                <div class="experience-title">Quality Metallurgy Co-Op</div>
+                <div class="experience-meta">Nucor – Jewett, TX | Jan 2025 – Aug 2025</div>
+                <div class="experience-description">
+                    During my co-op at Nucor's bar mill in Jewett, I worked on failure analysis and quality
+                    improvement initiatives that directly impacted production efficiency and customer satisfaction. I
+                    analyzed 22 failed steel heats using scanning electron microscopy and energy dispersive spectroscopy
+                    to trace inclusion sources back to their origins in the steelmaking process, preventing over
+                    $900,000
+                    in potential customer claims and informing targeted process improvements. To streamline quality
+                    reporting, I developed Python automation tools that transformed a manual 2-hour weekly scrap data
+                    processing task into a 20-minute automated workflow, improving data accuracy and freeing up
+                    significant time for analytical work. My investigation of tensile test failures involved correlating
+                    mechanical property data with upstream processing conditions (analyzing rolling mill strand data,
+                    nominal weight distributions, and heat-to-heat variations) to identify root causes and inform
+                    production improvements that I presented to supervisors. I performed microstructural analysis to
+                    diagnose failure mechanisms, interpreting grain structures, inclusion morphologies, and phase
+                    distributions to establish connections between steelmaking practices and material performance
+                    issues. I also maintained SEM calibration protocols and performed
+                    routine equipment maintenance per ISO quality standards to ensure measurement reliability and
+                    laboratory accreditation compliance.
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-title">Legislative & Technology Intern</div>
+                <div class="experience-meta">National Mining Association – Washington, D.C. | June 2024 – Aug 2024</div>
+                <div class="experience-description">
+                    Working at the intersection of mining technology and federal policy, I supported the National Mining
+                    Association's advocacy efforts on critical minerals and environmental regulations. I analyzed over
+                    15 critical minerals patents and pieces of legislation to identify key technical and policy
+                    implications for domestic supply chain security, work that directly supported congressional
+                    testimony preparation. To quantify the economic impact of proposed EPA environmental regulations on
+                    the mining sector, I compiled regulatory compliance cost estimates totaling $2.3 million across 8
+                    member company operations. I researched environmental fate and toxicity data for the 6PPD tire
+                    additive to assess potential impacts on mining operations and inform the association's regulatory
+                    strategy. A significant part of my role involved translating complex technical concepts for
+                    non-technical audiences; I created fact sheets that made mining processes and mineral processing
+                    technologies accessible to policy makers and congressional staff. I monitored federal rulemaking
+                    processes and distilled lengthy stakeholder comments into concise summaries that enabled association
+                    leadership to make strategic decisions during public comment periods. I also attended Congressional
+                    hearings and provided technical support during regulatory briefings, serving as a resource for
+                    mining industry perspectives on emerging environmental and minerals policy issues.
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-title">Research Assistant</div>
+                <div class="experience-meta">UTEP Polymer Extrusion Lab – El Paso, TX | Feb 2023 – June 2024</div>
+                <div class="experience-description">
+                    My research focused on developing shape memory polymer blends for 3D printing applications, with
+                    potential uses in biomedical devices.
+                    I optimized thermoplastic polyurethane and polycaprolactone blend compositions to achieve a 10%
+                    increase in tensile strength and 99.9% shape recovery rate, properties which make these materials
+                    particularly suitable for shape memory applications.
+                    Operating twin-screw extruders, I produced consistent filaments by carefully controlling temperature
+                    profiles, screw speed, and feed rates to eliminate diameter variations and ensure reliable
+                    printability for additive manufacturing. To understand the fundamental behavior of these materials,
+                    I characterized their properties using scanning electron microscopy, dynamic mechanical analysis,
+                    and X-ray diffraction, verifying thermal transitions, mechanical performance, and crystalline
+                    structure critical for shape memory behavior. I developed Python automation workflows to extract
+                    mechanical properties from raw tensile test data, reducing processing time and eliminating manual
+                    calculation errors. Beyond the lab, I engaged K-12 students through Polymer Pathways
+                    Program demonstrations, conducting hands-on activities designed to spark interest in materials
+                    science and polymer engineering. This work culminated in a co-authored research paper published in
+                    the Journal of Materials Science documenting our development and characterization of these shape
+                    memory polymer blends.
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-title">Summer Research Student</div>
+                <div class="experience-meta">SMU BAST Lab – Dallas, TX | July 2019 – Aug 2019</div>
+                <div class="experience-description">
+                    I spent the summer exploring the potential of magnetically actuated millirobots for minimally
+                    invasive medical procedures. I designed these robots using 3D-printed PLA structures with embedded
+                    permanent magnets, carefully considering how magnetic field interactions could enable controlled
+                    locomotion at the millimeter scale. Through systematic testing of three different locomotion
+                    modes (pivot walking, tumbling, and rolling) I determined that pivot walking achieved 40% faster
+                    speeds while providing more controlled navigation through complex environments. Fabricating these
+                    prototypes using fused deposition modeling required maintaining 0.1mm dimensional tolerances to
+                    ensure precise magnet placement and consistent magnetic response for reliable locomotion control. I
+                    validated navigation capabilities by guiding the robots through maze environments using
+                    electromagnetic coil control systems, demonstrating the feasibility of remotely controlled
+                    microrobots for applications like targeted drug delivery. Throughout the summer, I collaborated with
+                    graduate students to integrate my experimental findings into the lab's broader medical robotics
+                    research program, contributing to their development of next-generation surgical tools.
+                </div>
+            </div>
+        </section>
+
+        <section id="research" class="section">
+            <h2>Research</h2>
+            <div class="intro-text">Research work I've been involved in lately.</div>
+
+            <div class="publication">
+                <div class="publication-title">Development of binary and ternary polyester shape memory blends for
+                    additive manufacturing</div>
+                <div class="publication-details">
+                    Carrillo, L.E.L., Gonzalez, Y.O., Parga, M. et al.<br>
+                    <i>Journal of Materials Science</i> 59, 8040–8057 (2024)
+                </div>
+                <a href="https://doi.org/10.1007/s10853-024-09632-x" target="_blank" class="publication-link">Read
+                    paper</a>
+            </div>
+        </section>
+
+        <section id="making" class="section">
+            <h2>Making</h2>
+            <div class="intro-text">Because it is immensely satisfying to work with materials that have predictable
+                mechanical properties...</div>
+
+            <p>I make clothes. I am currently obsessed with tailoring and fitting, having discovered that understanding
+                how woven fabrics behave along the bias versus the straight grain is surprisingly relevant to getting
+                sleeves to set properly and darts to lie flat.</p>
+
+            <p>I have made a variety of things, like <b>blazers that mostly fit around the shoulders</b>, <b>wrap
+                    dresses with questionable closure engineering</b>, and <b>experimental structured pieces</b> that
+                looked
+                better as technical flats than as actual garments, as well as numerous toiles and fitting muslins that I
+                have no pictures of because before 2025, I hadn't yet accepted that documentation might actually help me
+                remember why certain adjustments worked.</p>
+        </section>
+
+        <div class="contact-section">
+            <div class="contact-links">
+                <a href="mailto:yareli.inbox@gmail.com" class="contact-link">Email</a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/yourprofile" target="_blank" class="contact-link">GitHub</a>
+                <a href="/your-cv.pdf" target="_blank" class="contact-link">Download CV</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            const targetSection = document.getElementById(sectionId);
+            targetSection.classList.add('active');
+
+            // Update nav
+            const navItems = document.querySelectorAll('.nav-link');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.closest('.nav-link').classList.add('active');
+
+            // Scroll to section after it's rendered
+            setTimeout(() => {
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
+        }
+    </script>
+</body>
+
+</html>
