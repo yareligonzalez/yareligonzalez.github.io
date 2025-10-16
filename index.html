@@ -27,6 +27,7 @@
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
@@ -135,6 +136,7 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -370,7 +372,8 @@
                     El Paso</b>, expecting to graduate in May 2027.
             </p>
 
-            <p>Most recently, I completed an 8-month co-op as a <b>quality metallurgist at Nucor</b>, where I performed failure
+            <p>Most recently, I completed an 8-month co-op as a <b>quality metallurgist at Nucor</b>, where I performed
+                failure
                 analysis and root cause investigations, used advanced microscopy techniques to understand defect
                 formation, and worked cross-functionally to implement quality improvements that prevented customer
                 claims.</p>
@@ -507,6 +510,12 @@
                 better as technical flats than as actual garments, as well as numerous toiles and fitting muslins that I
                 have no pictures of because before 2025, I hadn't yet accepted that documentation might actually help me
                 remember why certain adjustments worked.</p>
+            <p>I also make websites, much like this one. I have made things like portfolio sites that are maybe too
+                committed to a single design concept, responsive layouts that work beautifully at exactly three
+                breakpoints, and hand-coded SVG animations that seemed worth the effort until I realized I'd spent an
+                hour debugging transform-origin for something that displays for approximately two seconds. All assets
+                used on this site were created by me, including the ones that would have been faster to source
+                elsewhere.</p>
         </section>
 
         <div class="contact-section">
@@ -522,7 +531,7 @@
     <script>
         function showSection(event, sectionId) {
             event.preventDefault();
-            
+
             const sections = document.querySelectorAll('.section');
             sections.forEach(section => {
                 section.classList.remove('active');
